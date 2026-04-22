@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>杨家东庄村 — 水源守护者</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== Hero 首屏 ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(
+        160deg,
+        #1a3d16 0%,
+        #2d5a27 40%,
+        #4a8c3f 100%
+      );
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 50%, rgba(122,182,72,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(45,90,39,0.4) 0%, transparent 50%);
+    }
+
+    /* 装饰圆圈 */
+    .hero-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-circle-1 {
+      width: 500px; height: 500px;
+      top: -100px; right: -100px;
+    }
+    .hero-circle-2 {
+      width: 300px; height: 300px;
+      bottom: 50px; right: 150px;
+      border-color: rgba(122,182,72,0.2);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 120px 5% 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(122,182,72,0.2);
+      border: 1px solid rgba(122,182,72,0.4);
+      color: #a8d878;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      padding: 6px 16px;
+      border-radius: 40px;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+      max-width: 700px;
+    }
+
+    .hero-title span {
+      color: #a8d878;
+    }
+
+    .hero-desc {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      background: #7ab648;
+      color: var(--white);
+      padding: 14px 32px;
+    }
+    .btn-hero-primary:hover {
+      background: #8fd455;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(122,182,72,0.4);
+    }
+
+    .btn-hero-outline {
+      border: 2px solid rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.85);
+      padding: 14px 32px;
+    }
+    .btn-hero-outline:hover {
+      border-color: #7ab648;
+      color: #a8d878;
+      transform: translateY(-2px);
+    }
+
+    /* 底部数字统计 */
+    .hero-stats {
+      position: absolute;
+      bottom: 40px;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      gap: 3rem;
+      z-index: 1;
+    }
+
+    .stat-item {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .stat-item strong span {
+      color: #a8d878;
+      font-size: 1rem;
+    }
+
+    /* ===== 概览卡片 ===== */
+    .overview {
+      background: var(--white);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .overview-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .overview-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #e8f5e0, #c8e8b0);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-size: 1.6rem;
+    }
+
+    .overview-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .overview-card p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* ===== 核心矛盾版块 ===== */
+    .tension {
+      background: var(--cream);
+    }
+
+    .tension-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .tension-quote {
+      background: var(--green-dark);
+      border-radius: var(--radius);
+      padding: 3rem;
+      color: var(--white);
+    }
+
+    .tension-quote blockquote {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .tension-quote cite {
+      font-size: 0.8rem;
+      color: #a8d878;
+      letter-spacing: 0.1em;
+    }
+
+    .tension-text .section-label {
+      margin-top: 2rem;
+    }
+
+    .tension-list {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .tension-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      color: var(--text-mid);
+    }
+
+    .tension-list li::before {
+      content: '→';
+      color: var(--green-mid);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ===== 导航入口卡片 ===== */
+    .pages-nav {
+      background: var(--white);
+    }
+
+    .pages-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .page-card {
+      display: block;
+      text-decoration: none;
+      padding: 2rem;
+      border: 1px solid rgba(74,140,63,0.12);
+      border-radius: var(--radius);
+      transition: var(--transition);
+      background: var(--cream);
+    }
+
+    .page-card:hover {
+      border-color: var(--green-mid);
+      background: var(--white);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .page-card-num {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-card p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    .page-card-arrow {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--green-mid);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; bottom: 24px; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .tension-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .pages-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav>
+    <a href="index.html" class="nav-logo">杨家东庄村</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="about.html">关于村子</a></li>
+      <li><a href="challenge.html">困境与选择</a></li>
+      <li><a href="solution.html">三大方向</a></li>
+      <li><a href="adopt.html">认领樱桃树</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero 首屏 -->
+  <section class="hero">
+    <div class="hero-circle hero-circle-1"></div>
+    <div class="hero-circle hero-circle-2"></div>
+    <div class="hero-content">
+      <div class="hero-tag fade-in">📍 北京市怀柔区 · 怀柔水库西北岸</div>
+      <h1 class="hero-title fade-in fade-in-delay-1">
+        因保护而<span>珍贵</span>，<br>因珍贵而<span>可持续</span>
+      </h1>
+      <p class="hero-desc fade-in fade-in-delay-2">
+        杨家东庄村坐落于怀柔水库一级保护区内。<br>
+        这里不是发展的死角，而是稀缺的起点。
+      </p>
+      <div class="hero-buttons fade-in fade-in-delay-3">
+        <a href="about.html" class="btn btn-hero-primary">了解村子</a>
+        <a href="adopt.html" class="btn btn-hero-outline">认领一棵樱桃树</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <strong>3001<span>亩</span></strong>
+        全村总面积
+      </div>
+      <div class="stat-item">
+        <strong>810<span>人</span></strong>
+        现有村民
+      </div>
+      <div class="stat-item">
+        <strong>150<span>亩</span></strong>
+        樱桃园
+      </div>
+      <div class="stat-item">
+        <strong>40<span>年+</span></strong>
+        天文台运行
+      </div>
+    </div>
+  </section>
+
+  <!-- 概览：一水两翼 -->
+  <section class="overview">
+    <div class="container">
+      <p class="section-label fade-in">村庄格局</p>
+      <h2 class="section-title fade-in fade-in-delay-1">一水两翼，三重禀赋</h2>
+      <p class="section-subtitle fade-in fade-in-delay-2">
+        水库、天文台、樱桃园，构成了杨家东庄独一无二的资源底色。
+      </p>
+      <div class="overview-grid">
+        <div class="card overview-card fade-in">
+          <div class="overview-icon">💧</div>
+          <h3>怀柔水库</h3>
+          <p>村庄南侧紧邻水库，水质连续多年保持三类以上标准，每年吸引天鹅等候鸟栖息，生态本底优质。</p>
+        </div>
+        <div class="card overview-card fade-in fade-in-delay-1">
+          <div class="overview-icon">🔭</div>
+          <h3>国家天文台</h3>
+          <p>东翼坐落中科院怀柔太阳观测基地，自1984年建站以来长期处于国际领先水平，科普价值突出。</p>
+        </div>
+        <div class="card overview-card fade-in fade-in-delay-2">
+          <div class="overview-icon">🍒</div>
+          <h3>樱桃园</h3>
+          <p>西翼现有150亩村集体樱桃园，种植美早、黑珍珠等优质品种，已打入北京市级超市渠道。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心张力 -->
+  <section class="tension">
+    <div class="container">
+      <div class="tension-inner">
+        <div class="tension-quote fade-in">
+          <blockquote>
+            "保护是不可动摇的前提，发展是无法回避的现实。"
+          </blockquote>
+          <cite>— 项目核心命题</cite>
+        </div>
+        <div class="tension-text fade-in fade-in-delay-1">
+          <p class="section-label">我们的挑战</p>
+          <h2 class="section-title">生态约束下的<br>突围路径</h2>
+          <ul class="tension-list">
+            <li>全域位于饮用水水源一级保护区，常规开发路径几乎全部触碰法律红线</li>
+            <li>樱桃产业季节性强，去年曾遭遇极端天气绝收</li>
+            <li>村庄老龄化严重，缺乏本地运营人才</li>
+            <li>已有资源丰富，但转化闭环几乎空白</li>
+          </ul>
+          <a href="challenge.html" class="btn btn-outline" style="margin-top:2rem;">了解我们如何破局 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页面导航入口 -->
+  <section class="pages-nav">
+    <div class="container">
+      <p class="section-label fade-in">深入了解</p>
+      <h2 class="section-title fade-in fade-in-delay-1">探索更多</h2>
+      <div class="pages-grid">
+        <a href="about.html" class="page-card fade-in">
+          <div class="page-card-num">01</div>
+          <h3>关于杨家东庄</h3>
+          <p>地理位置、历史沿革、人口结构与独特资源禀赋。</p>
+          <span class="page-card-arrow">阅读 →</span>
+        </a>
+        <a href="challenge.html" class="page-card fade-in fade-in-delay-1">
+          <div class="page-card-num">02</div>
+          <h3>困境与选择</h3>
+          <p>一级保护区的制度硬约束，以及如何将生态代价转化为稀缺资本。</p>
+          <span class="page-card-arrow">阅读 →</span>
+        </a>
+        <a href="solution.html" class="page-card fade-in fade-in-delay-2">
+          <div class="page-card-num">03</div>
+          <h3>三大方向</h3>
+          <p>樱桃产业升级、林下生态经济、四季文旅体验体系。</p>
+          <span class="page-card-arrow">阅读 →</span>
+        </a>
+        <a href="adopt.html" class="page-card fade-in fade-in-delay-3">
+          <div class="page-card-num">04</div>
+          <h3>认领一棵樱桃树</h3>
+          <p>成为「源樱守护者」，认领一棵树，守护一片水源地。</p>
+          <span class="page-card-arrow">阅读 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <strong>杨家东庄村</strong> · 北京市怀柔区桥梓镇<br>
+    生态保护为基 · 价值转化为径 · 社区受益为本
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

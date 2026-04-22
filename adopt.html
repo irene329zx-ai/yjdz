@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认领樱桃树 — 源樱守护者</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== 页面 Hero ===== */
+    .page-hero {
+      background: linear-gradient(160deg, #3d0a0a 0%, #7a1f1f 40%, #c0392b 100%);
+      padding: 140px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '🍒';
+      position: absolute;
+      font-size: 20rem;
+      opacity: 0.06;
+      right: -2rem;
+      top: -3rem;
+      line-height: 1;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 60px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .page-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero .section-label { color: #f8b4b4; }
+    .page-hero .section-title { color: var(--white); font-size: clamp(2rem, 4vw, 3rem); }
+    .page-hero .section-subtitle { color: rgba(255,255,255,0.75); max-width: 560px; }
+
+    /* ===== 理念版块 ===== */
+    .concept { background: var(--cream); }
+
+    .concept-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .concept-text h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--green-dark);
+      line-height: 1.5;
+      margin-bottom: 1.2rem;
+    }
+
+    .concept-text p {
+      font-size: 0.93rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .concept-quote {
+      background: var(--green-dark);
+      border-radius: var(--radius);
+      padding: 3rem;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .concept-quote .quote-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .concept-quote blockquote {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 1rem;
+    }
+
+    .concept-quote cite {
+      font-size: 0.8rem;
+      color: #a8d878;
+      letter-spacing: 0.12em;
+    }
+
+    /* ===== 认领套餐 ===== */
+    .plans { background: var(--white); }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .plan-card {
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      border: 2px solid rgba(74,140,63,0.15);
+      background: var(--cream);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .plan-card:hover {
+      border-color: var(--green-mid);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(74,140,63,0.15);
+    }
+
+    .plan-card.featured {
+      border-color: var(--green-mid);
+      background: var(--white);
+      box-shadow: 0 8px 32px rgba(74,140,63,0.18);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green-mid);
+      color: var(--white);
+      font-size: 0.72rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      color: var(--green-mid);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    .plan-desc {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .plan-features li {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: var(--green-mid);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .plan-features li.muted { color: var(--text-light); }
+    .plan-features li.muted::before { content: '–'; color: var(--text-light); }
+
+    .plan-cta {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 2px solid var(--green-mid);
+      color: var(--green-mid);
+    }
+
+    .plan-card.featured .plan-cta {
+      background: var(--green-mid);
+      color: var(--white);
+    }
+
+    .plan-cta:hover {
+      background: var(--green-mid);
+      color: var(--white);
+    }
+
+    /* ===== 认领流程 ===== */
+    .process { background: var(--cream); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(to right, var(--green-light), var(--green-mid));
+      z-index: 0;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 0.5rem;
+    }
+
+    .step-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--green-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(74,140,63,0.15);
+    }
+
+    .process-step h4 {
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      color: var(--green-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .process-step p {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ===== 全年日历 ===== */
+    .calendar { background: var(--white); }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .calendar-item {
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border-left: 4px solid var(--green-mid);
+      background: var(--cream);
+    }
+
+    .calendar-month {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--green-mid);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .calendar-item h4 {
+      font-family: var(--font-title);
+      font-size: 0.92rem;
+      color: var(--green-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .calendar-item p {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ===== 数字小程序预览 ===== */
+    .app-preview { background: var(--green-dark); padding: 80px 5%; }
+
+    .app-preview .section-label { color: #a8d878; }
+    .app-preview .section-title { color: var(--white); }
+    .app-preview .section-subtitle { color: rgba(255,255,255,0.65); }
+
+    .app-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .app-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .app-feature {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .app-feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(122,182,72,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .app-feature h4 {
+      font-family: var(--font-title);
+      font-size: 0.92rem;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .app-feature p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    /* 手机模拟框 */
+    .phone-mockup {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      padding: 2rem;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .phone-screen {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 1.5rem;
+      min-height: 380px;
+    }
+
+    .phone-screen-header {
+      background: var(--green-dark);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .phone-screen-header p {
+      color: #a8d878;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    .phone-screen-header h5 {
+      color: var(--white);
+      font-family: var(--font-title);
+      font-size: 0.9rem;
+    }
+
+    .phone-tree-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .tree-emoji { font-size: 1.8rem; }
+
+    .tree-info h6 {
+      font-size: 0.78rem;
+      color: var(--green-dark);
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .tree-info p {
+      font-size: 0.7rem;
+      color: var(--text-light);
+    }
+
+    .phone-btn {
+      display: block;
+      background: var(--green-mid);
+      color: var(--white);
+      text-align: center;
+      padding: 0.7rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      margin-top: 1rem;
+    }
+
+    /* ===== FAQ ===== */
+    .faq { background: var(--cream); }
+
+    .faq-list {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 800px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .faq-question {
+      padding: 1.4rem 1.8rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--green-dark);
+      user-select: none;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--green-mid);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 1.8rem;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 1.8rem 1.4rem;
+    }
+
+    .faq-answer p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #c0392b 0%, #7a1f1f 100%);
+      text-align: center;
+      padding: 80px 5%;
+    }
+
+    .cta-section h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.72);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-white {
+      background: var(--white);
+      color: #c0392b;
+      padding: 14px 36px;
+      font-weight: 600;
+    }
+
+    .btn-cta-white:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .btn-cta-outline {
+      border: 2px solid rgba(255,255,255,0.5);
+      color: var(--white);
+      padding: 14px 36px;
+    }
+
+    .btn-cta-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .concept-inner  { grid-template-columns: 1fr; gap: 2rem; }
+      .plans-grid     { grid-template-columns: 1fr; }
+      .process-steps  { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+      .process-steps::before { display: none; }
+      .calendar-grid  { grid-template-columns: repeat(2, 1fr); }
+      .app-inner      { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav>
+    <a href="index.html" class="nav-logo">杨家东庄村</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="about.html">关于村子</a></li>
+      <li><a href="challenge.html">困境与选择</a></li>
+      <li><a href="solution.html">三大方向</a></li>
+      <li><a href="adopt.html">认领樱桃树</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- 页面 Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="section-label fade-in">源樱守护者计划</p>
+      <h1 class="section-title fade-in fade-in-delay-1">认领一棵樱桃树，<br>守护一片水源地</h1>
+      <p class="section-subtitle fade-in fade-in-delay-2">
+        不只是买樱桃，而是与一个村庄建立真实的连接。<br>
+        你的认领，是他们一整年生产的底气。
+      </p>
+    </div>
+  </section>
+
+  <!-- 理念 -->
+  <section class="concept">
+    <div class="container">
+      <div class="concept-inner">
+        <div class="concept-text fade-in">
+          <p class="section-label">为什么认领？</p>
+          <h2>让城市与乡村，<br>重新建立连接</h2>
+          <p>杨家东庄的樱桃园，因为一级水源保护区的严格管控，无法使用化肥，无法大规模扩张，无法像普通农场那样运营。但也正因为此，这里的每一颗樱桃，都是在最干净的土地上生长的。</p>
+          <p>认领制度的核心，是把「一次性采摘游客」变成「全年陪伴守护者」。你认领一棵树，全年参与它的养护，收获它的果实，也见证它的四季。</p>
+          <p>这不是公益，这是一种更真实的消费方式——你知道你的食物从哪里来，谁种的，怎么种的。</p>
+        </div>
+        <div class="concept-quote fade-in fade-in-delay-1">
+          <span class="quote-icon">🌳</span>
+          <blockquote>「认领一棵树，守护一片水源地，成为杨家东庄的源樱守护者。」</blockquote>
+          <cite>— 源樱守护者计划</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 认领套餐 -->
+  <section class="plans">
+    <div class="container">
+      <p class="section-label fade-in">认领方案</p>
+      <h2 class="section-title fade-in fade-in-delay-1">选择适合你的方案</h2>
+      <p class="section-subtitle fade-in fade-in-delay-2">所有方案均包含全年树木成长记录与采摘季专属权益。</p>
+      <div class="plans-grid">
+
+        <div class="plan-card fade-in">
+          <div class="plan-name">🌱 守护者</div>
+          <div class="plan-price">999<span> 元/年</span></div>
+          <div class="plan-desc">适合个人或小家庭，感受与一棵树的连接。</div>
+          <ul class="plan-features">
+            <li>认领1棵樱桃树（专属命名）</li>
+            <li>小程序实时查看树木生长</li>
+            <li>采摘季专属采摘权（5斤）</li>
+            <li>树木成长年度报告</li>
+            <li>电子守护者证书</li>
+            <li class="muted">到访养护体验（不含）</li>
+            <li class="muted">有机樱桃礼盒邮寄（不含）</li>
+          </ul>
+          <a href="contact.html" class="plan-cta">了解详情</a>
+        </div>
+
+        <div class="plan-card featured fade-in fade-in-delay-1">
+          <div class="plan-badge">✨ 最受欢迎</div>
+          <div class="plan-name">🍒 家庭守护者</div>
+          <div class="plan-price">1380<span> 元/年</span></div>
+          <div class="plan-desc">适合亲子家庭，让孩子参与真实的农耕劳动教育。</div>
+          <ul class="plan-features">
+            <li>认领1棵樱桃树（专属命名）</li>
+            <li>小程序实时查看树木生长</li>
+            <li>采摘季专属采摘权（10斤）</li>
+            <li>4次到访养护体验资格</li>
+            <li>春季剪枝·夏季除草·秋季施肥</li>
+            <li>有机樱桃礼盒邮寄（1次）</li>
+            <li>树木成长年度报告 + 实体证书</li>
+          </ul>
+          <a href="contact.html" class="plan-cta">了解详情</a>
+        </div>
+
+        <div class="plan-card fade-in fade-in-delay-2">
+          <div class="plan-name">🌟 深度守护者</div>
+          <div class="plan-price">1680<span> 元/年</span></div>
+          <div class="plan-desc">适合深度参与者，全年深度陪伴一棵树的成长。</div>
+          <ul class="plan-features">
+            <li>认领1棵樱桃树（专属命名）</li>
+            <li>小程序实时查看树木生长</li>
+            <li>采摘季专属采摘权（15斤）</li>
+            <li>不限次到访养护体验</li>
+            <li>有机樱桃礼盒邮寄（2次）</li>
+            <li>专属认领家庭相册</li>
+            <li>优先参与研学营活动</li>
+          </ul>
+          <a href="contact.html" class="plan-cta">了解详情</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 认领流程 -->
+  <section class="process">
+    <div class="container">
+      <p class="section-label fade-in">如何参与</p>
+      <h2 class="section-title fade-in fade-in-delay-1">五步完成认领</h2>
+      <div class="process-steps fade-in">
+        <div class="process-step">
+          <div class="step-circle">📱</div>
+          <h4>选择方案</h4>
+          <p>在小程序或网站选择适合你的认领套餐</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">🌳</div>
+          <h4>选定树木</h4>
+          <p>3D地图上为自己挑选一棵心仪的樱桃树</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">✍️</div>
+          <h4>为树命名</h4>
+          <p>给你的树起一个专属名字，写入认领档案</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">📅</div>
+          <h4>全年参与</h4>
+          <p>预约到访参与养护，随时查看生长记录</p>
+        </div>
+        <div class="process-step">
+          <div class="step-circle">🍒</div>
+          <h4>收获果实</h4>
+          <p>采摘季享受专属采摘权或礼盒邮寄</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全年日历 -->
+  <section class="calendar">
+    <div class="container">
+      <p class="section-label fade-in">参与节奏</p>
+      <h2 class="section-title fade-in fade-in-delay-1">全年陪伴，四季有约</h2>
+      <div class="calendar-grid">
+        <div class="calendar-item fade-in">
+          <div class="calendar-month">1–2月</div>
+          <h4>🌿 认领开放</h4>
+          <p>新年认领季开放，选树命名，收到认领证书与新年专属礼盒。</p>
+        </div>
+        <div class="calendar-item fade-in fade-in-delay-1">
+          <div class="calendar-month">3月</div>
+          <h4>✂️ 春季剪枝</h4>
+          <p>预约到访，亲手参与樱桃树春季剪枝，体验真实的农耕劳动。</p>
+        </div>
+        <div class="calendar-item fade-in fade-in-delay-2">
+          <div class="calendar-month">4月</div>
+          <h4>🌸 樱花观赏</h4>
+          <p>樱桃花盛开，小程序推送你的树开花实拍，可预约到访赏花打卡。</p>
+        </div>
+        <div class="calendar-item fade-in fade-in-delay-3">
+          <div class="calendar-month">5月中旬</div>
+          <h4>🍒 专属采摘</h4>
+          <p>采摘季开放，凭认领资格优先入园，享受自己那棵树的专属采摘权。</p>
+        </div>
+        <div class="calendar-item fade-in">
+          <div class="calendar-month">6–7月</div>
+          <h4>🌱 夏季除草</h4>
+          <p>参与夏季除草与浇水养护，小程序同步树木生长状态与夏日日记。</p>
+        </div>
+        <div class="calendar-item fade-in fade-in-delay-1">
+          <div class="calendar-month">9–10月</div>
+          <h4>🍂 秋季施肥</h4>
+          <p>参与秋季有机肥施肥，候鸟归来时节，可参与水库生态观察活动。</p>
+        </div>
+        <div class="calendar-item fade-in fade-in-delay-2">
+          <div class="calendar-month">11月</div>
+          <h4>📋 年度报告</h4>
+          <p>收到你的树木专属年度报告，记录全年成长、产量与四季影像。</p>
+        </div>
+        <div class="calendar-item fade-in fade-in-delay-3">
+          <div class="calendar-month">12月</div>
+          <h4>🎁 年货礼盒</h4>
+          <p>深加工产品年货礼盒上线，同时开放次年认领续约，延续你的守护。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 小程序预览 -->
+  <section class="app-preview">
+    <div class="container">
+      <p class="section-label fade-in">数字化体验</p>
+      <h2 class="section-title fade-in fade-in-delay-1">随时与你的树保持连接</h2>
+      <div class="app-inner">
+        <div class="app-features fade-in">
+          <div class="app-feature">
+            <div class="app-feature-icon">📍</div>
+            <div>
+              <h4>3D地图选树</h4>
+              <p>小程序内可查看樱桃园3D地图，精确定位你认领的那一棵树的位置。</p>
+            </div>
+          </div>
+          <div class="app-feature">
+            <div class="app-feature-icon">📸</div>
+            <div>
+              <h4>AI摄像头实时拍照</h4>
+              <p>园区内设置AI摄像头，定时拍照上传，让你随时看到树木的实时状态。</p>
+            </div>
+          </div>
+          <div class="app-feature">
+            <div class="app-feature-icon">📅</div>
+            <div>
+              <h4>到访预约</h4>
+              <p>提前在小程序预约到访日期，避免人流过度集中，确保最佳体验。</p>
+            </div>
+          </div>
+          <div class="app-feature">
+            <div class="app-feature-icon">🛒</div>
+            <div>
+              <h4>一站式购买</h4>
+              <p>樱桃、蜂蜜、果酱、文创产品，全部在小程序内购买，直接邮寄到家。</p>
+            </div>
+          </div>
+        </div>
+        <div class="fade-in fade-in-delay-1">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="phone-screen-header">
+                <p>源樱守护者</p>
+                <h5>我的樱桃树</h5>
+              </div>
+              <div class="phone-tree-card">
+                <span class="tree-emoji">🌳</span>
+                <div class="tree-info">
+                  <h6>小明家的树 · A-23号</h6>
+                  <p>状态良好 · 花苞形成中</p>
+                </div>
+              </div>
+              <div class="phone-tree-card">
+                <span class="tree-emoji">📸</span>
+                <div class="tree-info">
+                  <h6>今日实拍 · 刚刚更新</h6>
+                  <p>点击查看最新生长记录</p>
+                </div>
+              </div>
+              <div class="phone-tree-card">
+                <span class="tree-emoji">📅</span>
+                <div class="tree-info">
+                  <h6>采摘季预约</h6>
+                  <p>5月15日 · 已预约 ✓</p>
+                </div>
+              </div>
+              <span class="phone-btn">进入我的树木主页</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <p class="section-label fade-in">常见问题</p>
+      <h2 class="section-title fade-in fade-in-delay-1">你可能想问的</h2>
+      <div class="faq-list fade-in">
+        <div class="faq-item">
+          <div class="faq-question">如果当年遇到极端天气导致减产，怎么处理？</div>
+          <div class="faq-answer"><p>若因极端天气导致大幅减产，采摘量将按实际情况折算，同时提供等额的深加工产品（果酱、樱桃干等）作为补偿，并在次年认领时给予优惠。我们不会让守护者白白承担自然风险。</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">我不在北京，也可以认领吗？</div>
+          <div class="faq-answer"><p>完全可以。认领方案中的所有数字权益（小程序查看、成长记录、年度报告）不受地域限制。采摘权可换成等量有机樱桃礼盒邮寄到全国，额外收取快递费。</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">到访参与养护，需要提前预约吗？</div>
+          <div class="faq-answer"><p>需要通过小程序提前预约，主要是为了控制同期到访人数，保证每位守护者都有良好的体验，同时也符合一级保护区对人流密度的管理要求。</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">可以给孩子认领一棵属于他/她的树吗？</div>
+          <div class="faq-answer"><p>这正是我们最推荐的方式之一。为孩子认领一棵树，可以为树起一个属于他/她的名字，全年通过小程序看着它成长，采摘季亲手摘下自己的果实——这是最真实的自然教育。</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">认领是否符合一级水源保护区的法规？</div>
+          <div class="faq-answer"><p>是的。认领制度基于现有农业生产活动，不新建任何建设项目，到访活动在建设用地范围内进行，全程零污染运营，完全符合水源保护区相关法规要求。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="fade-in">成为第一批源樱守护者</h2>
+      <p class="fade-in fade-in-delay-1">首年目标：300棵认领。每一棵，都是一个家庭与这片土地的连接。</p>
+      <div class="cta-buttons fade-in fade-in-delay-2">
+        <a href="contact.html" class="btn btn-cta-white">立即咨询认领</a>
+        <a href="solution.html" class="btn btn-cta-outline">了解三大方向</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <strong>杨家东庄村</strong> · 北京市怀柔区桥梓镇<br>
+    生态保护为基 · 价值转化为径 · 社区受益为本
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // FAQ 展开收起
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

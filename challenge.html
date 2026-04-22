@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>困境与选择 — 杨家东庄村</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== 页面 Hero ===== */
+    .page-hero {
+      background: linear-gradient(160deg, #2c1810 0%, #5c2d0e 50%, #8b4513 100%);
+      padding: 140px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 60px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .page-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero .section-label { color: #e8a87c; }
+    .page-hero .section-title { color: var(--white); font-size: clamp(2rem, 4vw, 3rem); }
+    .page-hero .section-subtitle { color: rgba(255,255,255,0.7); max-width: 560px; }
+
+    /* ===== 四大痛点 ===== */
+    .painpoints { background: var(--cream); }
+
+    .painpoint-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .painpoint-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--green-mid);
+      transition: var(--transition);
+    }
+
+    .painpoint-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    }
+
+    .painpoint-card.urgent { border-top-color: #c0392b; }
+    .painpoint-card.policy { border-top-color: #e67e22; }
+    .painpoint-card.ops    { border-top-color: #2980b9; }
+    .painpoint-card.talent { border-top-color: #8e44ad; }
+
+    .painpoint-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .painpoint-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      color: var(--green-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .painpoint-card p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 0.8rem;
+    }
+
+    .painpoint-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .tag-red    { background: #fde8e6; color: #c0392b; }
+    .tag-orange { background: #fef0e0; color: #e67e22; }
+    .tag-blue   { background: #e0f0fe; color: #2980b9; }
+    .tag-purple { background: #f0e6fe; color: #8e44ad; }
+
+    /* ===== 法律约束详解 ===== */
+    .legal { background: var(--white); }
+
+    .legal-intro {
+      max-width: 720px;
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin: 1.5rem 0 3rem;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .legal-card {
+      border-radius: var(--radius);
+      padding: 1.8rem;
+    }
+
+    .legal-card.forbidden { background: #fde8e6; border-left: 4px solid #c0392b; }
+    .legal-card.limited   { background: #fef0e0; border-left: 4px solid #e67e22; }
+    .legal-card.allowed   { background: #e8f5e0; border-left: 4px solid var(--green-mid); }
+    .legal-card.supported { background: #e0f0fe; border-left: 4px solid #2980b9; }
+
+    .legal-card h4 {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-card.forbidden h4 { color: #c0392b; }
+    .legal-card.limited h4   { color: #e67e22; }
+    .legal-card.allowed h4   { color: var(--green-dark); }
+    .legal-card.supported h4 { color: #2980b9; }
+
+    .legal-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .legal-list li {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .legal-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+
+    /* ===== PESTEL ===== */
+    .pestel { background: var(--cream); }
+
+    .pestel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .pestel-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: var(--shadow);
+    }
+
+    .pestel-letter {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green-light);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .pestel-card h4 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--green-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .pestel-card p {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* ===== SWOT ===== */
+    .swot { background: var(--white); }
+
+    .swot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 3rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .swot-cell {
+      padding: 2.2rem;
+    }
+
+    .swot-cell.s { background: #e8f5e0; }
+    .swot-cell.w { background: #fef0e0; }
+    .swot-cell.o { background: #e0f0fe; }
+    .swot-cell.t { background: #fde8e6; }
+
+    .swot-cell h4 {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .swot-cell.s h4 { color: var(--green-dark); }
+    .swot-cell.w h4 { color: #c87300; }
+    .swot-cell.o h4 { color: #2980b9; }
+    .swot-cell.t h4 { color: #c0392b; }
+
+    .swot-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .swot-list li {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .swot-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      font-size: 0.75rem;
+    }
+
+    .swot-strategy {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--green-dark);
+      border-radius: var(--radius);
+      color: var(--white);
+    }
+
+    .swot-strategy h4 {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      color: #a8d878;
+      margin-bottom: 0.8rem;
+    }
+
+    .swot-strategy p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.9;
+    }
+
+    /* ===== 转折点 ===== */
+    .turning { background: var(--cream); }
+
+    .turning-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .turning-text h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--green-dark);
+      line-height: 1.5;
+      margin-bottom: 1.2rem;
+    }
+
+    .turning-text p {
+      font-size: 0.93rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .turning-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .turning-step {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      box-shadow: var(--shadow);
+    }
+
+    .step-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .turning-step h4 {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--green-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .turning-step p {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ===== 下一页引导 ===== */
+    .next-page {
+      background: var(--green-dark);
+      text-align: center;
+      padding: 80px 5%;
+    }
+
+    .next-page h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .next-page p {
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .painpoint-grid { grid-template-columns: 1fr; }
+      .legal-grid     { grid-template-columns: 1fr; }
+      .pestel-grid    { grid-template-columns: 1fr 1fr; }
+      .swot-grid      { grid-template-columns: 1fr; }
+      .turning-inner  { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav>
+    <a href="index.html" class="nav-logo">杨家东庄村</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="about.html">关于村子</a></li>
+      <li><a href="challenge.html">困境与选择</a></li>
+      <li><a href="solution.html">三大方向</a></li>
+      <li><a href="adopt.html">认领樱桃树</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- 页面 Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="section-label fade-in">困境与选择</p>
+      <h1 class="section-title fade-in fade-in-delay-1">生态约束下的<br>突围路径</h1>
+      <p class="section-subtitle fade-in fade-in-delay-2">
+        这里不是普通的发展困难，而是制度性约束与现实需求之间最真实的张力。<br>
+        理解困境，才能理解我们为什么这样选择。
+      </p>
+    </div>
+  </section>
+
+  <!-- 四大痛点 -->
+  <section class="painpoints">
+    <div class="container">
+      <p class="section-label fade-in">核心痛点</p>
+      <h2 class="section-title fade-in fade-in-delay-1">四道真实的难题</h2>
+      <div class="painpoint-grid">
+
+        <div class="painpoint-card urgent fade-in">
+          <div class="painpoint-num">PAIN 01</div>
+          <h3>🌧️ 产业脆弱——去年绝收</h3>
+          <p>极端天气导致樱桃绝收，水库涨水淹树，无法使用化肥农家肥只能依赖昂贵有机肥。这不是销售问题，是生存问题。全年收益高度压缩在三至四周的采摘窗口内。</p>
+          <span class="painpoint-tag tag-red">⚠️ 最紧迫</span>
+        </div>
+
+        <div class="painpoint-card policy fade-in fade-in-delay-1">
+          <div class="painpoint-num">PAIN 02</div>
+          <h3>📋 政策高压线——无法办证</h3>
+          <p>全域位于饮用水水源一级保护区，禁止新建与供水无关的建设项目，禁止餐饮、民宿、零售等常规业态。外来游客「来了没地方花钱」，消费无法在本地沉淀。</p>
+          <span class="painpoint-tag tag-orange">🔒 制度约束</span>
+        </div>
+
+        <div class="painpoint-card ops fade-in fade-in-delay-2">
+          <div class="painpoint-num">PAIN 03</div>
+          <h3>🔄 转化闭环缺失——有流量无留量</h3>
+          <p>已有IP设计、小程序、打卡点，但都未真正落地运营。天文台不对外开放，樱桃园与三产联动空白，缺少停车餐饮等配套。游客「来了拍照就走，消费不了」。</p>
+          <span class="painpoint-tag tag-blue">📉 运营缺口</span>
+        </div>
+
+        <div class="painpoint-card talent fade-in fade-in-delay-3">
+          <div class="painpoint-num">PAIN 04</div>
+          <h3>👥 要素匮乏——缺钱缺人缺空间</h3>
+          <p>村集体资金有限，600人中约300人是60岁以上老人，几乎没有高校毕业生返乡创业。缺少停车场、活动空间等载体。即便有好方案，也缺乏本地执行主体。</p>
+          <span class="painpoint-tag tag-purple">🧩 结构性难题</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 法律约束详解 -->
+  <section class="legal">
+    <div class="container">
+      <p class="section-label fade-in">政策边界</p>
+      <h2 class="section-title fade-in fade-in-delay-1">红线在哪里？</h2>
+      <p class="legal-intro fade-in fade-in-delay-2">
+        根据《中华人民共和国水污染防治法》第五十八条及《北京市水污染防治条例》第五十七条，一级保护区有着明确的行为清单。搞清楚边界，是设计任何方案的第一步。
+      </p>
+      <div class="legal-grid">
+        <div class="legal-card forbidden fade-in">
+          <h4>🚫 禁止清单</h4>
+          <ul class="legal-list">
+            <li>新建、改建、扩建与供水无关的建设项目</li>
+            <li>组织旅游、游泳、垂钓等水上活动</li>
+            <li>畜禽养殖（全面禁止）</li>
+            <li>工业项目（严格限制）</li>
+            <li>农家宴、民宿新建（审批极难落地）</li>
+          </ul>
+        </div>
+        <div class="legal-card limited fade-in fade-in-delay-1">
+          <h4>⚠️ 限制清单</h4>
+          <ul class="legal-list">
+            <li>新增商业零售需严格审批</li>
+            <li>农业用地用途变更受限</li>
+            <li>大型集会与人流密集活动需报批</li>
+            <li>基础设施建设须通过环评</li>
+          </ul>
+        </div>
+        <div class="legal-card allowed fade-in fade-in-delay-2">
+          <h4>✅ 允许清单</h4>
+          <ul class="legal-list">
+            <li>现有农业生产（有机种植）</li>
+            <li>在建设用地范围内的合规运营</li>
+            <li>轻量化户外活动（骑行、徒步）</li>
+            <li>食品加工合作（引入企业）</li>
+            <li>数字化、线上销售渠道</li>
+          </ul>
+        </div>
+        <div class="legal-card supported fade-in fade-in-delay-3">
+          <h4>💡 鼓励清单</h4>
+          <ul class="legal-list">
+            <li>有机产品认证与生态标签</li>
+            <li>生态产品价值实现试点</li>
+            <li>碳汇项目开发与交易</li>
+            <li>生态涵养区绿色发展业态</li>
+            <li>乡村振兴与数字乡村建设</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PESTEL -->
+  <section class="pestel">
+    <div class="container">
+      <p class="section-label fade-in">宏观环境</p>
+      <h2 class="section-title fade-in fade-in-delay-1">PESTEL 分析</h2>
+      <div class="pestel-grid">
+        <div class="pestel-card fade-in">
+          <div class="pestel-letter">P</div>
+          <h4>政治与法律</h4>
+          <p>一级保护区法律红线是硬约束，但乡村振兴战略与生态产品价值实现政策提供了制度通道，约束与机遇并存。</p>
+        </div>
+        <div class="pestel-card fade-in fade-in-delay-1">
+          <div class="pestel-letter">E</div>
+          <h4>经济</h4>
+          <p>北京居民可支配收入持续增长，近郊微度假与研学经济扩容，为优质生态产品提供溢价空间；但村内造血能力不足。</p>
+        </div>
+        <div class="pestel-card fade-in fade-in-delay-2">
+          <div class="pestel-letter">S</div>
+          <h4>社会</h4>
+          <p>城市年轻群体对自然教育、生态体验兴趣上升；骑行文化走向大众休闲；村内人口老龄化严重，运营主体缺失。</p>
+        </div>
+        <div class="pestel-card fade-in">
+          <div class="pestel-letter">T</div>
+          <h4>技术</h4>
+          <p>短视频、小程序、社区团购等低门槛工具可用，但需要解决「谁来持续运营」的问题，技术赋能须配套运营主体。</p>
+        </div>
+        <div class="pestel-card fade-in fade-in-delay-1">
+          <div class="pestel-letter">E</div>
+          <h4>生态</h4>
+          <p>水质优良、候鸟栖息、绿化覆盖率高——生态越好保护义务越重，但同时生态溢价潜力也越大，是最核心的双刃剑。</p>
+        </div>
+        <div class="pestel-card fade-in fade-in-delay-2">
+          <div class="pestel-letter">L</div>
+          <h4>法律</h4>
+          <p>水污染防治法与北京地方条例共同构成边界，但生态补偿机制、碳汇交易、有机认证等政策窗口尚未被充分利用。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWOT -->
+  <section class="swot">
+    <div class="container">
+      <p class="section-label fade-in">综合判断</p>
+      <h2 class="section-title fade-in fade-in-delay-1">SWOT 分析</h2>
+      <div class="swot-grid fade-in">
+        <div class="swot-cell s">
+          <h4>💪 优势 Strengths</h4>
+          <ul class="swot-list">
+            <li>怀柔水库优质生态，景观稀缺</li>
+            <li>150亩樱桃园已有初步品牌积累</li>
+            <li>国家级天文观测基地科普价值突出</li>
+            <li>党建基础扎实，校村共建资源丰富</li>
+          </ul>
+        </div>
+        <div class="swot-cell w">
+          <h4>⚠️ 劣势 Weaknesses</h4>
+          <ul class="swot-list">
+            <li>产业链条短，三产联动几乎空白</li>
+            <li>村集体经济薄弱，自主投入能力不足</li>
+            <li>旅游接待配套设施缺乏</li>
+            <li>劳动力外流，本地运营人才匮乏</li>
+          </ul>
+        </div>
+        <div class="swot-cell o">
+          <h4>🌱 机会 Opportunities</h4>
+          <ul class="swot-list">
+            <li>京郊微度假、研学市场持续扩容</li>
+            <li>生态溢价消费趋势为绿色农产品提供空间</li>
+            <li>国家生态产品价值实现机制政策窗口</li>
+            <li>骑行、自然教育等新兴业态与村庄高度契合</li>
+          </ul>
+        </div>
+        <div class="swot-cell t">
+          <h4>🌩️ 威胁 Threats</h4>
+          <ul class="swot-list">
+            <li>一级水源保护区法律红线制约常规开发</li>
+            <li>季节性强，收入来源波动大</li>
+            <li>周边同类乡村旅游竞争加剧</li>
+            <li>游客承载量受生态容量限制</li>
+          </ul>
+        </div>
+      </div>
+      <div class="swot-strategy fade-in">
+        <h4>战略判断</h4>
+        <p>杨家东庄的核心机会在于，将生态约束本身转化为稀缺性标签——「因保护而珍贵」。优先聚焦：以生态标签赋能樱桃品牌溢价，以天文与自然教育撬动研学市场，以低干预轻资产模式实现合规开发。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 转折点 -->
+  <section class="turning">
+    <div class="container">
+      <div class="turning-inner">
+        <div class="turning-text fade-in">
+          <p class="section-label">我们的选择</p>
+          <h2>将「生态代价」<br>转化为「稀缺资本」</h2>
+          <p>常规乡村振兴路径中最具变现能力的方法，在这里几乎全部遇到法律红线。但这恰恰意味着——这里的生态，是其他地方无法复制的。</p>
+          <p>我们的核心逻辑不是「绕过约束」，而是「让约束成为优势」。</p>
+        </div>
+        <div class="turning-steps fade-in fade-in-delay-1">
+          <div class="turning-step">
+            <span class="step-icon">🌿</span>
+            <div>
+              <h4>生态即稀缺</h4>
+              <p>一级保护区的严格管控，让这里的天空、水质、土壤成为北京近郊最稀缺的资源。</p>
+            </div>
+          </div>
+          <div class="turning-step">
+            <span class="step-icon">🏷️</span>
+            <div>
+              <h4>稀缺即溢价</h4>
+              <p>「零污染」「水源地旁」「有机认证」——每一个标签，都是消费者愿意为之付出溢价的理由。</p>
+            </div>
+          </div>
+          <div class="turning-step">
+            <span class="step-icon">🔄</span>
+            <div>
+              <h4>轻资产合规开发</h4>
+              <p>不新建重型设施，转而发展认领制度、研学体验、林下经济等低干预、可合规的业态。</p>
+            </div>
+          </div>
+          <div class="turning-step">
+            <span class="step-icon">📱</span>
+            <div>
+              <h4>数字化补位</h4>
+              <p>用小程序、线上预售、内容传播弥补线下配套不足，把流量沉淀为长期会员关系。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下一页引导 -->
+  <section class="next-page">
+    <div class="container">
+      <h2 class="fade-in">看看我们具体怎么做</h2>
+      <p class="fade-in fade-in-delay-1">三大方向，一个平台，分阶段落地。</p>
+      <a href="solution.html" class="btn btn-primary fade-in fade-in-delay-2">三大方向 →</a>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <strong>杨家东庄村</strong> · 北京市怀柔区桥梓镇<br>
+    生态保护为基 · 价值转化为径 · 社区受益为本
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

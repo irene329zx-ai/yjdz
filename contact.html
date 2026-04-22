@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我们 — 杨家东庄村</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== 页面 Hero ===== */
+    .page-hero {
+      background: linear-gradient(160deg, #1a2d1a 0%, #2d5a27 50%, #4a8c3f 100%);
+      padding: 140px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 60px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .page-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero .section-label { color: #a8d878; }
+    .page-hero .section-title { color: var(--white); font-size: clamp(2rem, 4vw, 3rem); }
+    .page-hero .section-subtitle { color: rgba(255,255,255,0.72); max-width: 520px; }
+
+    /* ===== 联系主体 ===== */
+    .contact-main { background: var(--cream); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* 左侧信息 */
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .info-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: var(--shadow);
+    }
+
+    .info-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .info-card h4 {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card p {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .info-card a {
+      color: var(--green-mid);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* 右侧表单 */
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form-wrap h3 {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-form-wrap p {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      margin-bottom: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid rgba(74,140,63,0.2);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--cream);
+      transition: var(--transition);
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green-mid);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(74,140,63,0.1);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--green-mid);
+      color: var(--white);
+      border: none;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: 0.05em;
+    }
+
+    .form-submit:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74,140,63,0.3);
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* 成功提示 */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .form-success.show { display: block; }
+    .contact-form.hidden { display: none; }
+
+    .success-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    .form-success h4 {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+    }
+
+    /* ===== 合作方向 ===== */
+    .cooperate { background: var(--white); }
+
+    .coop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .coop-card {
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid rgba(74,140,63,0.12);
+      background: var(--cream);
+      transition: var(--transition);
+    }
+
+    .coop-card:hover {
+      border-color: var(--green-mid);
+      background: var(--white);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .coop-icon { font-size: 2rem; display: block; margin-bottom: 0.8rem; }
+
+    .coop-card h4 {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .coop-card p {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* ===== 位置版块 ===== */
+    .location { background: var(--cream); }
+
+    .location-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .location-text h3 {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+    }
+
+    .location-text p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin-bottom: 0.8rem;
+    }
+
+    .route-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .route-list li {
+      display: flex;
+      gap: 0.8rem;
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      align-items: flex-start;
+    }
+
+    .route-icon { flex-shrink: 0; font-size: 1rem; }
+
+    /* 地图占位 */
+    .map-placeholder {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 2px dashed rgba(74,140,63,0.2);
+    }
+
+    .map-placeholder .map-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    .map-placeholder h4 {
+      font-family: var(--font-title);
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .map-placeholder p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== 团队 ===== */
+    .team { background: var(--white); }
+
+    .team-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .team-text h3 {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+    }
+
+    .team-text p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin-bottom: 0.8rem;
+    }
+
+    .team-tags {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .team-tag {
+      background: #e8f5e0;
+      color: var(--green-dark);
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .member-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .member-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8f5e0, #c8e8b0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin: 0 auto 0.8rem;
+    }
+
+    .member-card h5 {
+      font-family: var(--font-title);
+      font-size: 0.88rem;
+      color: var(--green-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .member-card p {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .contact-inner  { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row       { grid-template-columns: 1fr; }
+      .coop-grid      { grid-template-columns: 1fr; }
+      .location-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .team-inner     { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav>
+    <a href="index.html" class="nav-logo">杨家东庄村</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="about.html">关于村子</a></li>
+      <li><a href="challenge.html">困境与选择</a></li>
+      <li><a href="solution.html">三大方向</a></li>
+      <li><a href="adopt.html">认领樱桃树</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- 页面 Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="section-label fade-in">联系我们</p>
+      <h1 class="section-title fade-in fade-in-delay-1">我们期待与你连接</h1>
+      <p class="section-subtitle fade-in fade-in-delay-2">
+        无论你是想认领樱桃树的家庭、寻求合作的机构，<br>
+        还是对这个项目感兴趣的伙伴，都欢迎联系我们。
+      </p>
+    </div>
+  </section>
+
+  <!-- 联系主体 -->
+  <section class="contact-main">
+    <div class="container">
+      <div class="contact-inner">
+
+        <!-- 左侧联系信息 -->
+        <div class="contact-info fade-in">
+          <div class="info-card">
+            <span class="info-card-icon">📍</span>
+            <h4>村庄地址</h4>
+            <p>北京市怀柔区桥梓镇杨家东庄村<br>（怀柔水库西北岸，距怀柔城区约10公里）</p>
+          </div>
+          <div class="info-card">
+            <span class="info-card-icon">📧</span>
+            <h4>项目邮箱</h4>
+            <p><a href="mailto:contact@yangjiadongzhuang.cn">contact@yangjiadongzhuang.cn</a></p>
+          </div>
+          <div class="info-card">
+            <span class="info-card-icon">💬</span>
+            <h4>微信公众号</h4>
+            <p>搜索「源樱守护者」关注我们，获取最新活动资讯与认领开放通知。</p>
+          </div>
+          <div class="info-card">
+            <span class="info-card-icon">🕐</span>
+            <h4>回复时间</h4>
+            <p>工作日 9:00–18:00<br>通常在1个工作日内回复</p>
+          </div>
+        </div>
+
+        <!-- 右侧表单 -->
+        <div class="contact-form-wrap fade-in fade-in-delay-1">
+          <h3>给我们留言</h3>
+          <p>填写以下表单，我们会尽快与你联系。</p>
+
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">姓名 *</label>
+                <input type="text" id="name" placeholder="你的名字" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">联系电话</label>
+                <input type="tel" id="phone" placeholder="方便联系的电话">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">邮箱 *</label>
+              <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="type">我想咨询关于</label>
+              <select id="type">
+                <option value="">请选择</option>
+                <option value="adopt">认领樱桃树</option>
+                <option value="research">研学营 / 夏令营</option>
+                <option value="business">商务合作</option>
+                <option value="media">媒体采访</option>
+                <option value="university">高校合作</option>
+                <option value="other">其他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">留言内容 *</label>
+              <textarea id="message" placeholder="请描述你的需求或问题..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">发送留言 →</button>
+            <p class="form-note">你的信息仅用于回复联系，不会用于其他用途。</p>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <span class="success-icon">✅</span>
+            <h4>留言已发送！</h4>
+            <p>感谢你的关注，我们会在1个工作日内通过邮件或电话与你联系。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作方向 -->
+  <section class="cooperate">
+    <div class="container">
+      <p class="section-label fade-in">合作方向</p>
+      <h2 class="section-title fade-in fade-in-delay-1">我们欢迎哪些合作？</h2>
+      <div class="coop-grid">
+        <div class="coop-card fade-in">
+          <span class="coop-icon">🏫</span>
+          <h4>高校与研究机构</h4>
+          <p>欢迎有乡村振兴、生态经济、数字农业等研究方向的高校团队参与共建，村庄提供实践平台与调研资源。</p>
+        </div>
+        <div class="coop-card fade-in fade-in-delay-1">
+          <span class="coop-icon">🏢</span>
+          <h4>企业团建 / 亲子机构</h4>
+          <p>提供定制化企业团建方案与亲子研学产品，欢迎教育机构、研学公司接洽合作。</p>
+        </div>
+        <div class="coop-card fade-in fade-in-delay-2">
+          <span class="coop-icon">🛒</span>
+          <h4>农产品渠道合作</h4>
+          <p>寻求有机樱桃、蜂蜜、深加工产品的稳定分销渠道，欢迎高端商超、精品电商、企业采购接洽。</p>
+        </div>
+        <div class="coop-card fade-in">
+          <span class="coop-icon">📰</span>
+          <h4>媒体与内容创作者</h4>
+          <p>欢迎媒体记者、博主、摄影师到访采访创作，村庄可提供接待协助，共同传播生态价值转化的故事。</p>
+        </div>
+        <div class="coop-card fade-in fade-in-delay-1">
+          <span class="coop-icon">🌿</span>
+          <h4>生态与公益组织</h4>
+          <p>欢迎环保、公益、乡村发展领域的组织参与探讨，共同推动水源保护区可持续发展模式的建立。</p>
+        </div>
+        <div class="coop-card fade-in fade-in-delay-2">
+          <span class="coop-icon">💡</span>
+          <h4>政策与投资咨询</h4>
+          <p>欢迎有政策资源、社会资本或专业咨询背景的伙伴接洽，共同探索生态产品价值实现路径。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 位置 -->
+  <section class="location">
+    <div class="container">
+      <div class="location-inner">
+        <div class="location-text fade-in">
+          <p class="section-label">如何到达</p>
+          <h3>杨家东庄村</h3>
+          <p>北京市怀柔区桥梓镇，怀柔水库西北岸，距怀柔城区约10公里，距桥梓镇政府约5公里。</p>
+          <ul class="route-list">
+            <li>
+              <span class="route-icon">🚗</span>
+              <span><strong>自驾：</strong>从北京市区走京承高速，怀柔出口下，导航「杨家东庄村」，全程约60公里，约1小时。</span>
+            </li>
+            <li>
+              <span class="route-icon">🚌</span>
+              <span><strong>公共交通：</strong>地铁15号线终点站清华东路西口，换乘怀柔方向巴士至桥梓镇，再乘村际巴士或出租车前往。</span>
+            </li>
+            <li>
+              <span class="route-icon">🚲</span>
+              <span><strong>骑行：</strong>从怀柔城区骑行约10公里，沿水库路风景优美，是许多骑行爱好者的热门线路。</span>
+            </li>
+          </ul>
+        </div>
+        <div class="map-placeholder fade-in fade-in-delay-1">
+          <span class="map-icon">🗺️</span>
+          <h4>杨家东庄村</h4>
+          <p>北京市怀柔区桥梓镇<br>怀柔水库西北岸</p>
+          <a href="https://maps.google.com" target="_blank" class="btn btn-outline">在地图中查看 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 团队 -->
+  <section class="team">
+    <div class="container">
+      <div class="team-inner">
+        <div class="team-text fade-in">
+          <p class="section-label">项目团队</p>
+          <h3>我们是谁？</h3>
+          <p>这个项目由一支高校师生团队发起，以杨家东庄村为实践基地，致力于探索一级水源保护区内生态价值转化的可行路径。</p>
+          <p>团队成员来自不同专业背景，涵盖农业经济、数字技术、品牌设计与乡村治理等方向，与村委会、村民深度共创，确保方案真正可落地。</p>
+          <div class="team-tags">
+            <span class="team-tag">乡村振兴</span>
+            <span class="team-tag">生态经济</span>
+            <span class="team-tag">数字农业</span>
+            <span class="team-tag">品牌设计</span>
+            <span class="team-tag">校村共建</span>
+          </div>
+        </div>
+        <div class="team-members fade-in fade-in-delay-1">
+          <div class="member-card">
+            <div class="member-avatar">👨‍🏫</div>
+            <h5>指导教师</h5>
+            <p>资源对接 · 专业指导</p>
+          </div>
+          <div class="member-card">
+            <div class="member-avatar">👩‍💻</div>
+            <h5>研究生团队</h5>
+            <p>技术开发 · 数据分析</p>
+          </div>
+          <div class="member-card">
+            <div class="member-avatar">👨‍🎨</div>
+            <h5>本科生团队</h5>
+            <p>调研 · 文案 · 策划</p>
+          </div>
+          <div class="member-card">
+            <div class="member-avatar">🌾</div>
+            <h5>村委会</h5>
+            <p>决策 · 资源调配</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <strong>杨家东庄村</strong> · 北京市怀柔区桥梓镇<br>
+    生态保护为基 · 价值转化为径 · 社区受益为本<br>
+    <a href="mailto:contact@yangjiadongzhuang.cn">contact@yangjiadongzhuang.cn</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // 表单提交模拟
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('contactForm').classList.add('hidden');
+      document.getElementById('formSuccess').classList.add('show');
+    });
+  </script>
+</body>
+</html>

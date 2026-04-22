@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三大方向 — 杨家东庄村</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== 页面 Hero ===== */
+    .page-hero {
+      background: linear-gradient(160deg, #1a3d16 0%, #2d5a27 50%, #4a8c3f 100%);
+      padding: 140px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 60px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .page-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero .section-label { color: #a8d878; }
+    .page-hero .section-title { color: var(--white); font-size: clamp(2rem, 4vw, 3rem); }
+    .page-hero .section-subtitle { color: rgba(255,255,255,0.7); max-width: 600px; }
+
+    /* ===== 方案总览 ===== */
+    .overview-banner {
+      background: var(--white);
+      padding: 60px 5%;
+    }
+
+    .platform-box {
+      background: var(--green-dark);
+      border-radius: var(--radius);
+      padding: 2rem 2.5rem;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .platform-box h3 {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      color: #a8d878;
+      margin-bottom: 0.4rem;
+    }
+
+    .platform-box p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .pillars-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .pillar-preview {
+      border: 2px solid rgba(74,140,63,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .pillar-preview:hover {
+      border-color: var(--green-mid);
+      background: #f0fae8;
+      transform: translateY(-3px);
+    }
+
+    .pillar-preview .pillar-emoji { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+    .pillar-preview h4 {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--green-dark);
+      margin-bottom: 0.3rem;
+    }
+    .pillar-preview p { font-size: 0.82rem; color: var(--text-light); }
+
+    /* ===== 支柱通用 ===== */
+    .pillar-section { padding: 80px 0; }
+    .pillar-section.alt { background: var(--white); }
+    .pillar-section.cream { background: var(--cream); }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .pillar-badge {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .badge-cherry { background: linear-gradient(135deg, #fde8e6, #f8c0b8); }
+    .badge-forest { background: linear-gradient(135deg, #e8f5e0, #c8e8b0); }
+    .badge-travel { background: linear-gradient(135deg, #e0f0fe, #b8d8f8); }
+
+    .pillar-header-text h2 {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      color: var(--green-dark);
+      line-height: 1.3;
+    }
+
+    .pillar-header-text p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+    }
+
+    /* 支柱内容卡片 */
+    .measures-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .measure-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .pillar-section.alt .measure-card { background: var(--cream); box-shadow: none; border: 1px solid rgba(74,140,63,0.1); }
+
+    .measure-card h4 {
+      font-family: var(--font-title);
+      font-size: 0.92rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .measure-card p {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* 收益预测条 */
+    .income-bar {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pillar-section.alt .income-bar { background: var(--cream); box-shadow: none; border: 1px solid rgba(74,140,63,0.1); }
+
+    .income-bar-label {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .income-bar-num {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      color: var(--green-mid);
+      font-weight: 700;
+    }
+
+    .income-bar-unit {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      font-weight: 400;
+    }
+
+    .income-divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(74,140,63,0.15);
+    }
+
+    /* ===== 四季活动矩阵 ===== */
+    .seasons { background: var(--cream); }
+
+    .season-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .season-card {
+      border-radius: var(--radius);
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+    }
+
+    .season-card.spring { background: linear-gradient(160deg, #fff0f0, #ffe8f0); }
+    .season-card.summer { background: linear-gradient(160deg, #f0fff0, #e8ffe0); }
+    .season-card.autumn { background: linear-gradient(160deg, #fff8e0, #fff0d0); }
+    .season-card.winter { background: linear-gradient(160deg, #f0f0ff, #e8e8ff); }
+
+    .season-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+
+    .season-card h4 {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .season-card p {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .season-income {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      color: var(--green-mid);
+      font-weight: 700;
+    }
+
+    /* ===== 数字平台 ===== */
+    .platform { background: var(--white); }
+
+    .platform-modules {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .module-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      border: 1px solid rgba(74,140,63,0.12);
+    }
+
+    .module-icon { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+
+    .module-card h4 {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .module-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .module-features li {
+      font-size: 0.83rem;
+      color: var(--text-mid);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .module-features li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--green-mid);
+      font-weight: 700;
+    }
+
+    /* ===== 财务总览 ===== */
+    .financials { background: var(--green-dark); padding: 80px 5%; }
+
+    .financials .section-label { color: #a8d878; }
+    .financials .section-title { color: var(--white); }
+
+    .finance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .finance-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .finance-year {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .finance-num {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      color: #a8d878;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .finance-unit { font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 400; }
+    .finance-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+
+    /* ===== 下一页引导 ===== */
+    .next-page {
+      background: var(--cream);
+      text-align: center;
+      padding: 80px 5%;
+    }
+
+    .next-page h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--green-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .next-page p {
+      color: var(--text-mid);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .pillars-row      { grid-template-columns: 1fr; }
+      .measures-grid    { grid-template-columns: 1fr; }
+      .season-grid      { grid-template-columns: repeat(2, 1fr); }
+      .platform-modules { grid-template-columns: 1fr 1fr; }
+      .finance-grid     { grid-template-columns: 1fr; }
+      .income-bar       { flex-direction: column; gap: 1rem; }
+      .income-divider   { width: 60px; height: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav>
+    <a href="index.html" class="nav-logo">杨家东庄村</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="about.html">关于村子</a></li>
+      <li><a href="challenge.html">困境与选择</a></li>
+      <li><a href="solution.html">三大方向</a></li>
+      <li><a href="adopt.html">认领樱桃树</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- 页面 Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="section-label fade-in">三大方向</p>
+      <h1 class="section-title fade-in fade-in-delay-1">三大支柱，一个平台</h1>
+      <p class="section-subtitle fade-in fade-in-delay-2">
+        在生态约束内，找到可持续、可落地、可复制的发展路径。<br>
+        每一个方向，都直接对应一个真实的痛点。
+      </p>
+    </div>
+  </section>
+
+  <!-- 方案总览 -->
+  <section class="overview-banner">
+    <div class="container">
+      <div class="platform-box fade-in">
+        <h3>📱 数字化运营平台（小程序）</h3>
+        <p>统一入口 · 数据中台 · 营销工具 · 认领管理 · 电商销售</p>
+      </div>
+      <div class="pillars-row">
+        <div class="pillar-preview fade-in">
+          <span class="pillar-emoji">🍒</span>
+          <h4>支柱一</h4>
+          <p>樱桃全产业链</p>
+        </div>
+        <div class="pillar-preview fade-in fade-in-delay-1">
+          <span class="pillar-emoji">🌿</span>
+          <h4>支柱二</h4>
+          <p>林下生态经济</p>
+        </div>
+        <div class="pillar-preview fade-in fade-in-delay-2">
+          <span class="pillar-emoji">🗺️</span>
+          <h4>支柱三</h4>
+          <p>四季文旅体验</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 支柱一：樱桃 -->
+  <section class="pillar-section cream">
+    <div class="container">
+      <div class="pillar-header fade-in">
+        <div class="pillar-badge badge-cherry">🍒</div>
+        <div class="pillar-header-text">
+          <h2>支柱一：樱桃全产业链升级</h2>
+          <p>应对痛点：产量不稳、品牌不强、季节单一</p>
+        </div>
+      </div>
+      <div class="measures-grid">
+        <div class="measure-card fade-in">
+          <h4>🌱 伐陈更新 · 品种改良</h4>
+          <p>制定3-5年更新计划，引入抗逆性强的早中晚熟品种，错峰成熟延长采摘期约15天，预期3年后产量提升30%。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-1">
+          <h4>🏷️ 有机认证 · 生态标签</h4>
+          <p>申报国家有机产品认证，核算樱桃园碳汇价值，打造「水源保护区零污染樱桃」品牌，有机认证后价格可提升50-100%。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-2">
+          <h4>🎁 认领制度 · 预售锁客</h4>
+          <p>城市家庭认领樱桃树（¥999-1680/年），全年参与养护，采摘季享专属权益，小程序实时查看树木生长。</p>
+        </div>
+        <div class="measure-card fade-in">
+          <h4>🏪 高端市场 · 精品渠道</h4>
+          <p>对接北京高端商超、米其林餐厅、企业定制礼盒。精品装定价¥80-120/斤，以生态故事卡与可追溯二维码提升溢价。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-1">
+          <h4>🫙 深加工 · 全年销售</h4>
+          <p>引入食品加工企业合作，开发樱桃果酱、樱桃酒、樱桃醋、樱桃干等产品线，解决季节性收入空白，预期年销30-50万元。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-2">
+          <h4>📦 礼盒升级 · 故事营销</h4>
+          <p>限量编号包装，配套水源守护故事卡，扫码可看树木生长记录全程，将农产品升级为「有温度的礼物」。</p>
+        </div>
+      </div>
+      <div class="income-bar fade-in">
+        <div>
+          <div class="income-bar-label">认领收入（首年500棵）</div>
+          <div class="income-bar-num">60<span class="income-bar-unit"> 万元/年</span></div>
+        </div>
+        <div class="income-divider"></div>
+        <div>
+          <div class="income-bar-label">深加工销售</div>
+          <div class="income-bar-num">30–50<span class="income-bar-unit"> 万元/年</span></div>
+        </div>
+        <div class="income-divider"></div>
+        <div>
+          <div class="income-bar-label">采摘季综合收入</div>
+          <div class="income-bar-num">80–100<span class="income-bar-unit"> 万元/年</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 支柱二：林下经济 -->
+  <section class="pillar-section alt">
+    <div class="container">
+      <div class="pillar-header fade-in">
+        <div class="pillar-badge badge-forest">🌿</div>
+        <div class="pillar-header-text">
+          <h2>支柱二：林下生态经济</h2>
+          <p>应对痛点：单一产业风险高、秋冬无收入</p>
+        </div>
+      </div>
+      <div class="measures-grid">
+        <div class="measure-card fade-in">
+          <h4>🐝 养蜂 · 最快见效</h4>
+          <p>蜜蜂为樱桃授粉，提高坐果率15-20%。首年50-80箱，春夏秋三季产蜜，每箱年收入¥1200-3000。回收期约1年。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-1">
+          <h4>🌿 中草药 · 中期收益</h4>
+          <p>樱桃林下种植金银花、柴胡、黄芩等耐阴品种，种植面积5-8亩，2-3年见效，年收入预期5-8万元。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-2">
+          <h4>🍄 菌菇 · 门槛低见效快</h4>
+          <p>种植羊肚菌、香菇、平菇，菌棒种植不占耕地，技术成熟，羊肚菌¥150-200/斤，年收入预期5-10万元。</p>
+        </div>
+        <div class="measure-card fade-in">
+          <h4>🌸 颜值农业 · 打卡引流</h4>
+          <p>利用闲置空地分散种植观赏花卉，四季轮换（郁金香/薰衣草/波斯菊/腊梅），美化村容，创造网红打卡点，间接带动消费。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-1">
+          <h4>🌾 农业保险 · 风险对冲</h4>
+          <p>购买农业保险应对极端天气，林下多元化产业在樱桃绝收时可提供补充收入，从「靠天吃饭」走向「四季有收」。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-2">
+          <h4>📈 逐年扩大 · 持续增长</h4>
+          <p>第1年以蜂蜜为主快速见效，第3年蜂蜜+中草药+菌菇全面开花，第5年林下经济年收益预期达60-80万元。</p>
+        </div>
+      </div>
+      <div class="income-bar fade-in">
+        <div>
+          <div class="income-bar-label">第1年（蜂蜜为主）</div>
+          <div class="income-bar-num">15–25<span class="income-bar-unit"> 万元</span></div>
+        </div>
+        <div class="income-divider"></div>
+        <div>
+          <div class="income-bar-label">第3年（多元联动）</div>
+          <div class="income-bar-num">40–60<span class="income-bar-unit"> 万元</span></div>
+        </div>
+        <div class="income-divider"></div>
+        <div>
+          <div class="income-bar-label">第5年（全面成熟）</div>
+          <div class="income-bar-num">60–80<span class="income-bar-unit"> 万元</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 支柱三：文旅 -->
+  <section class="pillar-section cream">
+    <div class="container">
+      <div class="pillar-header fade-in">
+        <div class="pillar-badge badge-travel">🗺️</div>
+        <div class="pillar-header-text">
+          <h2>支柱三：四季文旅体验体系</h2>
+          <p>应对痛点：转化闭环缺失、配套不足、有景无产品</p>
+        </div>
+      </div>
+      <div class="measures-grid">
+        <div class="measure-card fade-in">
+          <h4>🎒 水源保护研学营</h4>
+          <p>中小学生为主，上午樱桃农业课，下午水质检测实验，晚上星空观测（可选）。定价¥180-380/人/天，年接待1000-2000人次。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-1">
+          <h4>🏕️ 亲子生态夏令营</h4>
+          <p>3天2夜或5天4夜，包含林下自然观察、蜜蜂养殖学习、手工创作等。定价¥1980-2980/人，年接待200-300人次。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-2">
+          <h4>🚲 骑行系统 · 周边联动</h4>
+          <p>联动周边3-5个村，路线总里程12-20公里，设置打卡点与骑行补给包，租车+打卡护照+套票模式，年接待500-1000人次。</p>
+        </div>
+        <div class="measure-card fade-in">
+          <h4>🔭 星空观测 · 天文科普</h4>
+          <p>申请研学团队预约制开放，村内设置简易观星平台，与天文爱好者协会合作志愿讲解，周末星空活动¥50-80/人。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-1">
+          <h4>📖 故事内容 · IP运营</h4>
+          <p>以村庄已有IP为基础，开发水库移民史、天文台故事、樱桃树成长记等内容线，制作科普动画、绘本与文创产品。</p>
+        </div>
+        <div class="measure-card fade-in fade-in-delay-2">
+          <h4>🏘️ 周边合作 · 补齐配套</h4>
+          <p>与周边村民宿合作解决住宿难题，联合运营骑行租车，共享停车与餐饮配套，将单村局限转化为区域联动优势。</p>
+        </div>
+      </div>
+      <div class="income-bar fade-in">
+        <div>
+          <div class="income-bar-label">研学营（水源+夏令营）</div>
+          <div class="income-bar-num">65–120<span class="income-bar-unit"> 万元/年</span></div>
+        </div>
+        <div class="income-divider"></div>
+        <div>
+          <div class="income-bar-label">骑行与活动</div>
+          <div class="income-bar-num">3–5<span class="income-bar-unit"> 万元/年</span></div>
+        </div>
+        <div class="income-divider"></div>
+        <div>
+          <div class="income-bar-label">文创与内容销售</div>
+          <div class="income-bar-num">5–8<span class="income-bar-unit"> 万元/年</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 四季矩阵 -->
+  <section class="seasons">
+    <div class="container">
+      <p class="section-label fade-in">全年规划</p>
+      <h2 class="section-title fade-in fade-in-delay-1">四季都有收入</h2>
+      <div class="season-grid">
+        <div class="season-card spring fade-in">
+          <span class="season-icon">🌸</span>
+          <h4>春季 3–5月</h4>
+          <p>樱花观赏、认领启动、采摘季全力运营、研学营开营</p>
+          <div class="season-income">150–200万</div>
+        </div>
+        <div class="season-card summer fade-in fade-in-delay-1">
+          <span class="season-icon">☀️</span>
+          <h4>夏季 6–8月</h4>
+          <p>生态夏令营、骑行避暑、蜂蜜上市、花卉景观</p>
+          <div class="season-income">50–80万</div>
+        </div>
+        <div class="season-card autumn fade-in fade-in-delay-2">
+          <span class="season-icon">🍂</span>
+          <h4>秋季 9–11月</h4>
+          <p>候鸟观察、中秋活动、中草药收获、蜂蜜秋季款</p>
+          <div class="season-income">30–50万</div>
+        </div>
+        <div class="season-card winter fade-in fade-in-delay-3">
+          <span class="season-icon">❄️</span>
+          <h4>冬季 12–2月</h4>
+          <p>年货节、深加工产品销售、研学营、认领续约</p>
+          <div class="season-income">40–60万</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数字平台 -->
+  <section class="platform">
+    <div class="container">
+      <p class="section-label fade-in">数字化平台</p>
+      <h2 class="section-title fade-in fade-in-delay-1">一个小程序，串联一切</h2>
+      <p class="section-subtitle fade-in fade-in-delay-2">
+        在现有小程序基础上扩充，成为连接城市用户与村庄的核心入口。
+      </p>
+      <div class="platform-modules">
+        <div class="module-card fade-in">
+          <span class="module-icon">🌳</span>
+          <h4>认领管理</h4>
+          <ul class="module-features">
+            <li>3D地图展示每棵树位置</li>
+            <li>AI摄像头定时拍照上传</li>
+            <li>家庭成长相册</li>
+            <li>到访预约系统</li>
+          </ul>
+        </div>
+        <div class="module-card fade-in fade-in-delay-1">
+          <span class="module-icon">🛒</span>
+          <h4>电商销售</h4>
+          <ul class="module-features">
+            <li>樱桃预售（采摘季前预订）</li>
+            <li>深加工产品商城</li>
+            <li>林下产品（蜂蜜/菌菇）</li>
+            <li>文创产品</li>
+          </ul>
+        </div>
+        <div class="module-card fade-in fade-in-delay-2">
+          <span class="module-icon">📅</span>
+          <h4>活动预约</h4>
+          <ul class="module-features">
+            <li>研学营报名</li>
+            <li>骑行租车预约</li>
+            <li>夏令营报名</li>
+            <li>季节性活动购票</li>
+          </ul>
+        </div>
+        <div class="module-card fade-in">
+          <span class="module-icon">📖</span>
+          <h4>内容传播</h4>
+          <ul class="module-features">
+            <li>科普动画播放</li>
+            <li>用户故事分享</li>
+            <li>活动推文</li>
+            <li>积分商城</li>
+          </ul>
+        </div>
+        <div class="module-card fade-in fade-in-delay-1">
+          <span class="module-icon">📊</span>
+          <h4>数据中台</h4>
+          <ul class="module-features">
+            <li>用户画像分析</li>
+            <li>销售数据统计</li>
+            <li>流量来源分析</li>
+            <li>复购率监测</li>
+          </ul>
+        </div>
+        <div class="module-card fade-in fade-in-delay-2">
+          <span class="module-icon">🔗</span>
+          <h4>合作对接</h4>
+          <ul class="module-features">
+            <li>品牌展示官网</li>
+            <li>合作伙伴入口</li>
+            <li>媒体素材库</li>
+            <li>B端企业团建入口</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 财务总览 -->
+  <section class="financials">
+    <div class="container">
+      <p class="section-label fade-in">收益预测</p>
+      <h2 class="section-title fade-in fade-in-delay-1">三年财务展望</h2>
+      <div class="finance-grid">
+        <div class="finance-card fade-in">
+          <div class="finance-year">第一年 · 启动期</div>
+          <div class="finance-num">270–350<span class="finance-unit"> 万元</span></div>
+          <div class="finance-desc">认领+采摘季+研学试运行</div>
+        </div>
+        <div class="finance-card fade-in fade-in-delay-1">
+          <div class="finance-year">第二年 · 成长期</div>
+          <div class="finance-num">350–450<span class="finance-unit"> 万元</span></div>
+          <div class="finance-desc">林下产品上市+夏令营全面运营</div>
+        </div>
+        <div class="finance-card fade-in fade-in-delay-2">
+          <div class="finance-year">第三年 · 规模期</div>
+          <div class="finance-num">450–600<span class="finance-unit"> 万元</span></div>
+          <div class="finance-desc">认领扩至800户+模式输出周边村</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下一页引导 -->
+  <section class="next-page">
+    <div class="container">
+      <h2 class="fade-in">成为「源樱守护者」</h2>
+      <p class="fade-in fade-in-delay-1">认领一棵樱桃树，守护一片水源地，与村庄建立一段真实的连接。</p>
+      <a href="adopt.html" class="btn btn-primary fade-in fade-in-delay-2">了解认领计划 →</a>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <strong>杨家东庄村</strong> · 北京市怀柔区桥梓镇<br>
+    生态保护为基 · 价值转化为径 · 社区受益为本
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

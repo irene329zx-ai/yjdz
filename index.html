@@ -30,21 +30,13 @@
         radial-gradient(ellipse at 20% 80%, rgba(45,90,39,0.4) 0%, transparent 50%);
     }
 
-    /* 装饰圆圈 */
     .hero-circle {
       position: absolute;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.08);
     }
-    .hero-circle-1 {
-      width: 500px; height: 500px;
-      top: -100px; right: -100px;
-    }
-    .hero-circle-2 {
-      width: 300px; height: 300px;
-      bottom: 50px; right: 150px;
-      border-color: rgba(122,182,72,0.2);
-    }
+    .hero-circle-1 { width: 500px; height: 500px; top: -100px; right: -100px; }
+    .hero-circle-2 { width: 300px; height: 300px; bottom: 50px; right: 150px; border-color: rgba(122,182,72,0.2); }
 
     .hero-content {
       position: relative;
@@ -76,9 +68,7 @@
       max-width: 700px;
     }
 
-    .hero-title span {
-      color: #a8d878;
-    }
+    .hero-title span { color: #a8d878; }
 
     .hero-desc {
       font-size: clamp(0.95rem, 1.5vw, 1.1rem);
@@ -88,49 +78,24 @@
       margin-bottom: 2.5rem;
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    .btn-hero-primary {
-      background: #7ab648;
-      color: var(--white);
-      padding: 14px 32px;
-    }
-    .btn-hero-primary:hover {
-      background: #8fd455;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(122,182,72,0.4);
-    }
+    .btn-hero-primary { background: #7ab648; color: var(--white); padding: 14px 32px; }
+    .btn-hero-primary:hover { background: #8fd455; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(122,182,72,0.4); }
 
-    .btn-hero-outline {
-      border: 2px solid rgba(255,255,255,0.4);
-      color: rgba(255,255,255,0.85);
-      padding: 14px 32px;
-    }
-    .btn-hero-outline:hover {
-      border-color: #7ab648;
-      color: #a8d878;
-      transform: translateY(-2px);
-    }
+    .btn-hero-outline { border: 2px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.85); padding: 14px 32px; }
+    .btn-hero-outline:hover { border-color: #7ab648; color: #a8d878; transform: translateY(-2px); }
 
-    /* 底部数字统计 */
     .hero-stats {
       position: absolute;
       bottom: 40px;
-      left: 5%;
-      right: 5%;
+      left: 5%; right: 5%;
       display: flex;
       gap: 3rem;
       z-index: 1;
     }
 
-    .stat-item {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.85rem;
-    }
+    .stat-item { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
 
     .stat-item strong {
       display: block;
@@ -141,15 +106,10 @@
       line-height: 1.2;
     }
 
-    .stat-item strong span {
-      color: #a8d878;
-      font-size: 1rem;
-    }
+    .stat-item strong span { color: #a8d878; font-size: 1rem; }
 
     /* ===== 概览卡片 ===== */
-    .overview {
-      background: var(--white);
-    }
+    .overview { background: var(--white); }
 
     .overview-grid {
       display: grid;
@@ -158,14 +118,10 @@
       margin-top: 3rem;
     }
 
-    .overview-card {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-    }
+    .overview-card { text-align: center; padding: 2.5rem 1.5rem; }
 
     .overview-icon {
-      width: 56px;
-      height: 56px;
+      width: 56px; height: 56px;
       background: linear-gradient(135deg, #e8f5e0, #c8e8b0);
       border-radius: 16px;
       display: flex;
@@ -175,23 +131,11 @@
       font-size: 1.6rem;
     }
 
-    .overview-card h3 {
-      font-family: var(--font-title);
-      font-size: 1.1rem;
-      color: var(--green-dark);
-      margin-bottom: 0.6rem;
-    }
-
-    .overview-card p {
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      line-height: 1.8;
-    }
+    .overview-card h3 { font-family: var(--font-title); font-size: 1.1rem; color: var(--green-dark); margin-bottom: 0.6rem; }
+    .overview-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.8; }
 
     /* ===== 核心矛盾版块 ===== */
-    .tension {
-      background: var(--cream);
-    }
+    .tension { background: var(--cream); }
 
     .tension-inner {
       display: grid;
@@ -215,15 +159,9 @@
       color: rgba(255,255,255,0.92);
     }
 
-    .tension-quote cite {
-      font-size: 0.8rem;
-      color: #a8d878;
-      letter-spacing: 0.1em;
-    }
+    .tension-quote cite { font-size: 0.8rem; color: #a8d878; letter-spacing: 0.1em; }
 
-    .tension-text .section-label {
-      margin-top: 2rem;
-    }
+    .tension-text .section-label { margin-top: 2rem; }
 
     .tension-list {
       list-style: none;
@@ -241,17 +179,10 @@
       color: var(--text-mid);
     }
 
-    .tension-list li::before {
-      content: '→';
-      color: var(--green-mid);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    .tension-list li::before { content: '→'; color: var(--green-mid); flex-shrink: 0; margin-top: 2px; }
 
     /* ===== 导航入口卡片 ===== */
-    .pages-nav {
-      background: var(--white);
-    }
+    .pages-nav { background: var(--white); }
 
     .pages-grid {
       display: grid;
@@ -270,40 +201,12 @@
       background: var(--cream);
     }
 
-    .page-card:hover {
-      border-color: var(--green-mid);
-      background: var(--white);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-    }
+    .page-card:hover { border-color: var(--green-mid); background: var(--white); transform: translateY(-3px); box-shadow: var(--shadow); }
 
-    .page-card-num {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      color: var(--text-light);
-      margin-bottom: 0.5rem;
-    }
-
-    .page-card h3 {
-      font-family: var(--font-title);
-      font-size: 1.15rem;
-      color: var(--green-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .page-card p {
-      font-size: 0.88rem;
-      color: var(--text-mid);
-      line-height: 1.7;
-    }
-
-    .page-card-arrow {
-      display: inline-block;
-      margin-top: 1rem;
-      color: var(--green-mid);
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
+    .page-card-num { font-size: 0.75rem; letter-spacing: 0.15em; color: var(--text-light); margin-bottom: 0.5rem; }
+    .page-card h3 { font-family: var(--font-title); font-size: 1.15rem; color: var(--green-dark); margin-bottom: 0.5rem; }
+    .page-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
+    .page-card-arrow { display: inline-block; margin-top: 1rem; color: var(--green-mid); font-size: 0.85rem; font-weight: 500; }
 
     /* ===== 响应式 ===== */
     @media (max-width: 768px) {
@@ -342,8 +245,8 @@
         因保护而<span>珍贵</span>，<br>因珍贵而<span>可持续</span>
       </h1>
       <p class="hero-desc fade-in fade-in-delay-2">
-        杨家东庄村坐落于怀柔水库一级保护区内。<br>
-        这里不是发展的死角，而是稀缺的起点。
+        上游村的第一口水，是北京人的第一口水。<br>
+        我们守护水源，也在这片约束中，走出一条真正属于这里的发展之路。
       </p>
       <div class="hero-buttons fade-in fade-in-delay-3">
         <a href="about.html" class="btn btn-hero-primary">了解村子</a>
@@ -391,8 +294,8 @@
         </div>
         <div class="card overview-card fade-in fade-in-delay-2">
           <div class="overview-icon">🍒</div>
-          <h3>樱桃园</h3>
-          <p>西翼现有150亩村集体樱桃园，种植美早、黑珍珠等优质品种，已打入北京市级超市渠道。</p>
+          <h3>零污染樱桃园</h3>
+          <p>西翼现有150亩村集体樱桃园，水源保护区的硬性要求让这里天然零污染，已打入北京市级超市渠道。</p>
         </div>
       </div>
     </div>
@@ -409,13 +312,13 @@
           <cite>— 项目核心命题</cite>
         </div>
         <div class="tension-text fade-in fade-in-delay-1">
-          <p class="section-label">我们的挑战</p>
-          <h2 class="section-title">生态约束下的<br>突围路径</h2>
+          <p class="section-label">我们的选择</p>
+          <h2 class="section-title">让约束成为<br>差异化优势</h2>
           <ul class="tension-list">
-            <li>全域位于饮用水水源一级保护区，常规开发路径几乎全部触碰法律红线</li>
-            <li>樱桃产业季节性强，去年曾遭遇极端天气绝收</li>
-            <li>村庄老龄化严重，缺乏本地运营人才</li>
-            <li>已有资源丰富，但转化闭环几乎空白</li>
+            <li>将"零污染"的保护区约束转化为有机溢价的品牌底气</li>
+            <li>以城市家庭认领樱桃树，把一次性游客变为长期守护者</li>
+            <li>依托水库生态与天文台科研背景，开展自然研学与四季文旅</li>
+            <li>以轻资产、数字化方式补位线下配套，让流量真正沉淀下来</li>
           </ul>
           <a href="challenge.html" class="btn btn-outline" style="margin-top:2rem;">了解我们如何破局 →</a>
         </div>
@@ -438,7 +341,7 @@
         <a href="challenge.html" class="page-card fade-in fade-in-delay-1">
           <div class="page-card-num">02</div>
           <h3>困境与选择</h3>
-          <p>一级保护区的制度硬约束，以及如何将生态代价转化为稀缺资本。</p>
+          <p>一级保护区的制度约束，以及如何将生态代价转化为稀缺资本。</p>
           <span class="page-card-arrow">阅读 →</span>
         </a>
         <a href="solution.html" class="page-card fade-in fade-in-delay-2">

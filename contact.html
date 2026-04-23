@@ -303,88 +303,12 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ===== 团队 ===== */
-    .team { background: var(--white); }
-
-    .team-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .team-text h3 {
-      font-family: var(--font-title);
-      font-size: 1.3rem;
-      color: var(--green-dark);
-      margin-bottom: 1rem;
-    }
-
-    .team-text p {
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      line-height: 1.9;
-      margin-bottom: 0.8rem;
-    }
-
-    .team-tags {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .team-tag {
-      background: #e8f5e0;
-      color: var(--green-dark);
-      font-size: 0.78rem;
-      padding: 5px 12px;
-      border-radius: 20px;
-    }
-
-    .team-members {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    .member-card {
-      background: var(--cream);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .member-avatar {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #e8f5e0, #c8e8b0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      margin: 0 auto 0.8rem;
-    }
-
-    .member-card h5 {
-      font-family: var(--font-title);
-      font-size: 0.88rem;
-      color: var(--green-dark);
-      margin-bottom: 0.2rem;
-    }
-
-    .member-card p {
-      font-size: 0.78rem;
-      color: var(--text-light);
-    }
-
     /* ===== 响应式 ===== */
     @media (max-width: 768px) {
       .contact-inner  { grid-template-columns: 1fr; gap: 2rem; }
       .form-row       { grid-template-columns: 1fr; }
       .coop-grid      { grid-template-columns: 1fr; }
       .location-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .team-inner     { grid-template-columns: 1fr; gap: 2rem; }
     }
   </style>
 </head>
@@ -473,9 +397,11 @@
                 <option value="">请选择</option>
                 <option value="adopt">认领樱桃树</option>
                 <option value="research">研学营 / 夏令营</option>
-                <option value="business">商务合作</option>
+                <option value="business">商务合作 / 渠道对接</option>
+                <option value="enterprise">企业团建 / 福利采购</option>
                 <option value="media">媒体采访</option>
                 <option value="university">高校合作</option>
+                <option value="invest">政策资源 / 投资咨询</option>
                 <option value="other">其他</option>
               </select>
             </div>
@@ -507,17 +433,17 @@
         <div class="coop-card fade-in">
           <span class="coop-icon">🏫</span>
           <h4>高校与研究机构</h4>
-          <p>欢迎有乡村振兴、生态经济、数字农业等研究方向的高校团队参与共建，村庄提供实践平台与调研资源。</p>
+          <p>欢迎乡村振兴、生态经济、数字农业等方向的高校团队参与共建，村庄提供真实调研场景与实践平台。</p>
         </div>
         <div class="coop-card fade-in fade-in-delay-1">
           <span class="coop-icon">🏢</span>
-          <h4>企业团建 / 亲子机构</h4>
-          <p>提供定制化企业团建方案与亲子研学产品，欢迎教育机构、研学公司接洽合作。</p>
+          <h4>企业团建 / 亲子研学</h4>
+          <p>提供定制化企业团建与亲子研学产品，欢迎教育机构、研学公司及有员工福利采购需求的企业接洽合作。</p>
         </div>
         <div class="coop-card fade-in fade-in-delay-2">
           <span class="coop-icon">🛒</span>
           <h4>农产品渠道合作</h4>
-          <p>寻求有机樱桃、蜂蜜、深加工产品的稳定分销渠道，欢迎高端商超、精品电商、企业采购接洽。</p>
+          <p>寻求有机樱桃、蜂蜜及深加工产品的优质销售渠道，欢迎精品商超、高端酒店、餐饮机构及企业礼品采购接洽。</p>
         </div>
         <div class="coop-card fade-in">
           <span class="coop-icon">📰</span>
@@ -531,8 +457,8 @@
         </div>
         <div class="coop-card fade-in fade-in-delay-2">
           <span class="coop-icon">💡</span>
-          <h4>政策与投资咨询</h4>
-          <p>欢迎有政策资源、社会资本或专业咨询背景的伙伴接洽，共同探索生态产品价值实现路径。</p>
+          <h4>政策资源 / 投资咨询</h4>
+          <p>欢迎有政策资源、社会资本或专业咨询背景的伙伴接洽，共同探索生态产品价值实现与绿色发展路径。</p>
         </div>
       </div>
     </div>
@@ -571,49 +497,6 @@
     </div>
   </section>
 
-  <!-- 团队 -->
-  <section class="team">
-    <div class="container">
-      <div class="team-inner">
-        <div class="team-text fade-in">
-          <p class="section-label">项目团队</p>
-          <h3>我们是谁？</h3>
-          <p>这个项目由一支高校师生团队发起，以杨家东庄村为实践基地，致力于探索一级水源保护区内生态价值转化的可行路径。</p>
-          <p>团队成员来自不同专业背景，涵盖农业经济、数字技术、品牌设计与乡村治理等方向，与村委会、村民深度共创，确保方案真正可落地。</p>
-          <div class="team-tags">
-            <span class="team-tag">乡村振兴</span>
-            <span class="team-tag">生态经济</span>
-            <span class="team-tag">数字农业</span>
-            <span class="team-tag">品牌设计</span>
-            <span class="team-tag">校村共建</span>
-          </div>
-        </div>
-        <div class="team-members fade-in fade-in-delay-1">
-          <div class="member-card">
-            <div class="member-avatar">👨‍🏫</div>
-            <h5>指导教师</h5>
-            <p>资源对接 · 专业指导</p>
-          </div>
-          <div class="member-card">
-            <div class="member-avatar">👩‍💻</div>
-            <h5>研究生团队</h5>
-            <p>技术开发 · 数据分析</p>
-          </div>
-          <div class="member-card">
-            <div class="member-avatar">👨‍🎨</div>
-            <h5>本科生团队</h5>
-            <p>调研 · 文案 · 策划</p>
-          </div>
-          <div class="member-card">
-            <div class="member-avatar">🌾</div>
-            <h5>村委会</h5>
-            <p>决策 · 资源调配</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- 页脚 -->
   <footer>
     <strong>杨家东庄村</strong> · 北京市怀柔区桥梓镇<br>
@@ -623,7 +506,6 @@
 
   <script src="js/main.js"></script>
   <script>
-    // 表单提交模拟
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       document.getElementById('contactForm').classList.add('hidden');

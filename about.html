@@ -32,24 +32,12 @@
       z-index: 1;
     }
 
-    .page-hero p.section-label {
-      color: #a8d878;
-    }
-
-    .page-hero .section-title {
-      color: var(--white);
-      font-size: clamp(2rem, 4vw, 3rem);
-    }
-
-    .page-hero .section-subtitle {
-      color: rgba(255,255,255,0.7);
-      max-width: 560px;
-    }
+    .page-hero p.section-label { color: #a8d878; }
+    .page-hero .section-title { color: var(--white); font-size: clamp(2rem, 4vw, 3rem); }
+    .page-hero .section-subtitle { color: rgba(255,255,255,0.7); max-width: 560px; }
 
     /* ===== 基本概况 ===== */
-    .facts {
-      background: var(--cream);
-    }
+    .facts { background: var(--cream); }
 
     .facts-grid {
       display: grid;
@@ -74,21 +62,11 @@
       line-height: 1.2;
     }
 
-    .fact-unit {
-      font-size: 0.85rem;
-      color: var(--green-mid);
-    }
-
-    .fact-label {
-      font-size: 0.82rem;
-      color: var(--text-light);
-      margin-top: 0.3rem;
-    }
+    .fact-unit { font-size: 0.85rem; color: var(--green-mid); }
+    .fact-label { font-size: 0.82rem; color: var(--text-light); margin-top: 0.3rem; }
 
     /* ===== 历史沿革 ===== */
-    .history {
-      background: var(--white);
-    }
+    .history { background: var(--white); }
 
     .history-inner {
       display: grid;
@@ -174,9 +152,7 @@
     }
 
     /* ===== 三大资源详情 ===== */
-    .resources {
-      background: var(--cream);
-    }
+    .resources { background: var(--cream); }
 
     .resource-block {
       display: grid;
@@ -190,21 +166,11 @@
       box-shadow: var(--shadow);
     }
 
-    .resource-block.reverse {
-      grid-template-columns: 2fr 1fr;
-    }
+    .resource-block.reverse { grid-template-columns: 2fr 1fr; }
+    .resource-block.reverse .resource-visual { order: 2; }
+    .resource-block.reverse .resource-text { order: 1; }
 
-    .resource-block.reverse .resource-visual {
-      order: 2;
-    }
-
-    .resource-block.reverse .resource-text {
-      order: 1;
-    }
-
-    .resource-visual {
-      text-align: center;
-    }
+    .resource-visual { text-align: center; }
 
     .resource-emoji {
       font-size: 5rem;
@@ -252,38 +218,6 @@
       color: var(--green-dark);
     }
 
-    /* ===== 利益相关者 ===== */
-    .stakeholders {
-      background: var(--white);
-    }
-
-    .stakeholder-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      margin-top: 2.5rem;
-    }
-
-    .stakeholder-card {
-      padding: 1.5rem;
-      border: 1px solid rgba(74,140,63,0.12);
-      border-radius: var(--radius);
-      background: var(--cream);
-    }
-
-    .stakeholder-card h4 {
-      font-family: var(--font-title);
-      font-size: 0.95rem;
-      color: var(--green-dark);
-      margin-bottom: 0.4rem;
-    }
-
-    .stakeholder-card p {
-      font-size: 0.83rem;
-      color: var(--text-mid);
-      line-height: 1.7;
-    }
-
     /* ===== 下一页引导 ===== */
     .next-page {
       background: var(--green-dark);
@@ -312,7 +246,6 @@
       .resource-block.reverse { grid-template-columns: 1fr; }
       .resource-block.reverse .resource-visual { order: 0; }
       .resource-block.reverse .resource-text { order: 0; }
-      .stakeholder-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -338,7 +271,7 @@
   <section class="page-hero">
     <div class="page-hero-inner">
       <p class="section-label fade-in">关于杨家东庄</p>
-      <h1 class="section-title fade-in fade-in-delay-1">一个因水库而生的村庄</h1>
+      <h1 class="section-title fade-in fade-in-delay-1">上游村的第一口水</h1>
       <p class="section-subtitle fade-in fade-in-delay-2">
         坐落于怀柔水库西北岸，距北京城区不足百公里。<br>
         这里有水、有星空、有樱桃，也有一段鲜为人知的历史。
@@ -397,7 +330,7 @@
           <div class="timeline-item">
             <div class="timeline-year">2000年后</div>
             <h4>保护区管控收严</h4>
-            <p>一级水源保护区政策收严，工业与常规旅游业态相继受限，村办企业走向衰落，村庄进入发展瓶颈期。</p>
+            <p>一级水源保护区政策收严，工业与常规旅游业态相继受限，村庄进入发展瓶颈期。</p>
           </div>
           <div class="timeline-item">
             <div class="timeline-year">现在</div>
@@ -406,10 +339,10 @@
           </div>
         </div>
         <div class="history-note fade-in fade-in-delay-1">
-          <h3>为什么历史重要？</h3>
-          <p>杨家东庄的发展困境不是偶然的，而是「搬迁—工业化—受限收缩」三段历史叠加的结果。每一次转折都打断了原有的发展逻辑，新路径始终未能真正跑通。</p>
-          <p>理解这段历史，才能理解为什么这里的村民既有对土地深厚的情感，也面临着现实的经济压力。</p>
-          <p>也正因为此，任何有效的方案都必须从这里的真实处境出发——而不是照搬其他地方的经验。</p>
+          <h3>这片水，是他们给北京的礼物</h3>
+          <p>七十年前，村民们告别了祖辈生活的土地，搬迁至现址，只为让水库能够建起来，让北京城有干净的水喝。</p>
+          <p>此后，他们又默默守护着这片水源，放弃了许多其他村庄唾手可得的发展机会。这份付出，从未被大多数人看见。</p>
+          <p>现在，我们想做的，是让这片被守护的生态，真正转化为村庄发展的资本——让守护者也能从中受益。</p>
         </div>
       </div>
     </div>
@@ -442,7 +375,7 @@
         <div class="resource-text">
           <h3>国家天文台 · 科研资源</h3>
           <p>村东翼坐落着中国科学院国家天文台怀柔太阳观测基地，自1984年建站以来长期处于国际领先水平，是全球重要的太阳物理研究中心之一。</p>
-          <p>这一资源目前尚未向公众开放，但其科普与研学价值极为突出——星空、天文、科学探索，是吸引城市家庭的天然磁石。</p>
+          <p>这里的夜空，是天文台选址时留下的礼物——低光污染、能见度高。星空之下，有太多故事可以讲给孩子们听。</p>
           <div class="resource-highlights">
             <span class="highlight-chip">国际领先水平</span>
             <span class="highlight-chip">建站40年+</span>
@@ -461,50 +394,18 @@
           <span class="resource-tag">西翼 · 产业</span>
         </div>
         <div class="resource-text">
-          <h3>村集体樱桃园 · 产业基础</h3>
-          <p>西翼现有村集体流转樱桃园150亩，种植美早、黑珍珠、红灯等优质品种，是村庄目前最主要的经济支柱，已打入北京市级超市渠道，具备一定品牌基础。</p>
-          <p>但樱桃产业仍面临亩产偏低、采摘季仅三至四周、销售渠道单一等挑战——这也是整个项目最核心的突破方向之一。</p>
+          <h3>村集体樱桃园 · 零污染出产</h3>
+          <p>西翼现有村集体流转樱桃园150亩，种植美早、黑珍珠、红灯等优质品种，已打入北京市级超市渠道。</p>
+          <p>因地处水源保护区，这里的樱桃从种植起就不用一滴化肥、不用一滴农药——不是营销说法，是保护区的硬性要求，也是消费者可以信赖的真实承诺。这份"零污染"，正是我们最核心的品牌底气。</p>
           <div class="resource-highlights">
             <span class="highlight-chip">150亩</span>
             <span class="highlight-chip">已进北京超市</span>
-            <span class="highlight-chip">有机种植潜力</span>
+            <span class="highlight-chip">天然零污染</span>
+            <span class="highlight-chip">有机认证在途</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- 利益相关者 -->
-  <section class="stakeholders">
-    <div class="container">
-      <p class="section-label fade-in">各方角色</p>
-      <h2 class="section-title fade-in fade-in-delay-1">谁在关心这里？</h2>
-      <div class="stakeholder-grid">
-        <div class="stakeholder-card fade-in">
-          <h4>🏡 村委会 / 村两委</h4>
-          <p>关键决策者，资源调配主体，核心诉求是增加集体收入、提升村庄知名度。</p>
-        </div>
-        <div class="stakeholder-card fade-in fade-in-delay-1">
-          <h4>🌾 樱桃种植农户</h4>
-          <p>产业方案的直接受益主体，希望提升销售价格与销量、获得更稳定的收入。</p>
-        </div>
-        <div class="stakeholder-card fade-in fade-in-delay-2">
-          <h4>👨‍👩‍👧 普通村民</h4>
-          <p>参与意愿直接影响项目落地深度，渴望本地就业机会与生活环境改善。</p>
-        </div>
-        <div class="stakeholder-card fade-in">
-          <h4>🏛️ 怀柔区 / 桥梓镇政府</h4>
-          <p>政策许可与资金支持的把关方，既要保护水源，也要完成乡村振兴考核指标。</p>
-        </div>
-        <div class="stakeholder-card fade-in fade-in-delay-1">
-          <h4>🌿 生态环境部门</h4>
-          <p>方案合规性的最终审核方，确保水源地保护红线不被突破。</p>
-        </div>
-        <div class="stakeholder-card fade-in fade-in-delay-2">
-          <h4>🎓 高校合作团队</h4>
-          <p>提供智力与人力资源，输入数字化、品牌、研学等关键能力。</p>
-        </div>
-      </div>
     </div>
   </section>
 
